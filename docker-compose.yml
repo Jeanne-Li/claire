@@ -1,0 +1,133 @@
+version: '3.8'
+
+services:
+  scraper-presse-citron:
+    build: ./Scrapers/scraper-presse-citron
+    networks:
+      - claire-network
+    ports:
+      - "3001:3000"
+    environment: 
+      - PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable
+      - PGUSER=root
+      - PGHOST=claire_postgres
+      - PGDATABASE=claire_db
+      - PGPASSWORD=root
+      - PGPORT=5432
+    depends_on:
+      - db
+
+  db:
+    container_name: claire_postgres
+    image: postgres
+    restart: always
+    environment: 
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: claire_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - claire-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U root -d claire_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  pgadmin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "5050:80"
+    volumes:
+      - ./servers.json:/pgadmin4/servers.json
+      - ./pgpass:/var/lib/pgadmin/.pgpass
+    networks:
+      - claire-network
+    depends_on:
+      - db
+
+  nocodb:
+    container_name: nocodb_container
+    image: nocodb/nocodb:latest
+    restart: always
+    ports:
+      - "8081:8080"
+    environment:
+      NC_DB: "pg://claire_postgres:5432?u=root&p=root&d=claire_db"
+    networks:
+      - claire-network
+    depends_on:
+      - db
+
+  api:
+    build: ./api
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgres://root:root@claire_postgres/claire_db
+    depends_on:
+      - db
+    networks:
+      - claire-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  tweet-generator:
+    build: ./tweet-generator-node
+    networks:
+      - claire-network
+    ports:
+      - "5000:5000"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - PGUSER=root
+      - PGHOST=claire_postgres
+      - PGDATABASE=claire_db
+      - PGPASSWORD=root
+      - PGPORT=5432
+    depends_on:
+      - db
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  n8n:
+    container_name: n8n_container
+    image: n8nio/n8n
+    restart: always
+    ports:
+      - "5678:5678"
+    networks:
+      - claire-network
+    environment:
+      - DB_TYPE=postgresdb
+      - DB_POSTGRESDB_HOST=claire_postgres
+      - DB_POSTGRESDB_PORT=5432
+      - DB_POSTGRESDB_DATABASE=claire_db
+      - DB_POSTGRESDB_USER=root
+      - DB_POSTGRESDB_PASSWORD=root
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=admin
+      - N8N_BASIC_AUTH_PASSWORD=admin
+    depends_on:
+      - db
+      
+networks:
+  claire-network:
+    driver: bridge
+
+volumes:
+  postgres_data:

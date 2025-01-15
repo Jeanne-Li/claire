@@ -1,0 +1,16 @@
+{
+  "id": "nc-json-exporter",
+  "title": "JSON Exporter",
+  "subTitle": "JSON Exporter",
+  "description": "json-exporter/description.md",
+  "entry": "json-exporter",
+  "version": "0.1",
+  "iconUrl": "json-exporter/assets/icon.png",
+  "publisherName": "NocoDB",
+  "publisherEmail": "contact@nocodb.com",
+  "publisherUrl": "https://www.nocodb.com",
+  "disabled": true,
+  "config": {
+    "contentMinHeight": "190px"
+  }
+}

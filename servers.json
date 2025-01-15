@@ -1,0 +1,15 @@
+{
+    "Servers": {
+      "1": {
+        "Name": "PostgresDB",
+        "Group": "Servers",
+        "Host": "claire_postgres",
+        "Port": 5432,
+        "MaintenanceDB": "claire_db",
+        "Username": "root",
+        "SSLMode": "prefer",
+        "PassFile": "/pgpassfile"
+      }
+    }
+  }
+  
