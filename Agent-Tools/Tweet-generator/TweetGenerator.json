@@ -1,0 +1,264 @@
+{
+  "name": "TweetGenerator",
+  "nodes": [
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4-turbo",
+          "mode": "list",
+          "cachedResultName": "GPT-4-TURBO"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=You are a Tweeter Expert. \nYou are the best with #, Emoji, Catching Awerness.\n\nCreate a Tweet on \n {{ $json.payload.title }}\n{{ $json.payload.content }}\n\nProvide the Source URL \n{{ $json.payload.link }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "1df33277-7532-499b-9939-9f1b6b6b4e82",
+      "name": "OpenAI",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.6,
+      "position": [
+        840,
+        300
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "HnjCJfbKhuJ1OxOk",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "tableName": {
+          "__rl": true,
+          "value": "techcrunch",
+          "mode": "name"
+        },
+        "additionalFields": {},
+        "options": {}
+      },
+      "id": "a1fc80f0-76db-42b0-9b46-e9006bebd2f8",
+      "name": "techcrunch",
+      "type": "n8n-nodes-base.postgresTrigger",
+      "typeVersion": 1,
+      "position": [
+        620,
+        300
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "HepPXfnw8NWZYpxQ",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "techcrunch_rss",
+          "mode": "list",
+          "cachedResultName": "techcrunch_rss"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ $('techcrunch').item.json.payload.id }}",
+            "tweet": "={{ $json.message.content }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "creator",
+              "displayName": "creator",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "link",
+              "displayName": "link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "pub_date",
+              "displayName": "pub_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "dc_creator",
+              "displayName": "dc_creator",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "content",
+              "displayName": "content",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "content_snippet",
+              "displayName": "content_snippet",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "guid",
+              "displayName": "guid",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "categories",
+              "displayName": "categories",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "array",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "iso_date",
+              "displayName": "iso_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "tweet",
+              "displayName": "tweet",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3fceb365-12f4-4de0-8acd-c5560e6ee9bc",
+      "name": "techcrunch-tweet",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        1180,
+        300
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "HepPXfnw8NWZYpxQ",
+          "name": "Postgres account 2"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "OpenAI": {
+      "main": [
+        [
+          {
+            "node": "techcrunch-tweet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "techcrunch": {
+      "main": [
+        [
+          {
+            "node": "OpenAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "a7627cd8-3929-4233-bafa-e94524e58a30",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "df8c1914d3f3cd00b5e241c18811e2507a43a7a61b135c735734e2fcf3453beb"
+  },
+  "id": "ga5CsmEF5Usm8zCC",
+  "tags": []
+}
