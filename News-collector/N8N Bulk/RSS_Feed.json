@@ -161,8 +161,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        620,
-        300
+        640,
+        540
       ],
       "credentials": {
         "postgres": {
@@ -188,7 +188,7 @@
       "typeVersion": 1,
       "position": [
         360,
-        300
+        540
       ]
     },
     {
@@ -338,8 +338,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        620,
-        520
+        640,
+        380
       ],
       "credentials": {
         "postgres": {
@@ -365,7 +365,7 @@
       "typeVersion": 1,
       "position": [
         360,
-        520
+        380
       ]
     },
     {
@@ -517,8 +517,3918 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        620,
+        640,
         720
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "HepPXfnw8NWZYpxQ",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "feedUrl": "http://www.wired.com/feed/rss"
+      },
+      "id": "a0bdb064-00c7-42c0-93f7-b2e99c480b7a",
+      "name": "rss_wired",
+      "type": "n8n-nodes-base.rssFeedReadTrigger",
+      "typeVersion": 1,
+      "position": [
+        360,
+        900
+      ]
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "wired",
+          "mode": "list",
+          "cachedResultName": "wired"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "creator": "={{ $json.creator }}",
+            "title": "={{ $json.title }}",
+            "link": "={{ $json.link }}",
+            "pub_date": "={{ $json.pubDate }}",
+            "dc_creator": "={{ $json['dc:creator'] }}",
+            "content": "={{ $json.content }}",
+            "content_snippet": "={{ $json.contentSnippet }}",
+            "guid": "={{ $json.guid }}",
+            "categories": "={{ $json.categories }}",
+            "iso_date": "={{ $json.isoDate }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "creator",
+              "displayName": "creator",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "link",
+              "displayName": "link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "pub_date",
+              "displayName": "pub_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "dc_creator",
+              "displayName": "dc_creator",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content",
+              "displayName": "content",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content_snippet",
+              "displayName": "content_snippet",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "guid",
+              "displayName": "guid",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "categories",
+              "displayName": "categories",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "array",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "iso_date",
+              "displayName": "iso_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a4aceb4d-2076-4810-84fb-4abe50c3fbda",
+      "name": "Postgres3",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        640,
+        900
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "HepPXfnw8NWZYpxQ",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "feedUrl": "http://www.engadget.com/rss.xml"
+      },
+      "id": "50a81ded-d5b2-4dcc-aa70-7d84ed8bbe11",
+      "name": "rss_engadget",
+      "type": "n8n-nodes-base.rssFeedReadTrigger",
+      "typeVersion": 1,
+      "position": [
+        360,
+        1060
+      ]
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "engadget",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "creator": "={{ $json.creator }}",
+            "title": "={{ $json.title }}",
+            "link": "={{ $json.link }}",
+            "pub_date": "={{ $json.pubDate }}",
+            "dc_creator": "={{ $json['dc:creator'] }}",
+            "content": "={{ $json.content }}",
+            "content_snippet": "={{ $json.contentSnippet }}",
+            "guid": "={{ $json.guid }}",
+            "categories": "={{ $json.categories }}",
+            "iso_date": "={{ $json.isoDate }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "creator",
+              "displayName": "creator",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "link",
+              "displayName": "link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "pub_date",
+              "displayName": "pub_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "dc_creator",
+              "displayName": "dc_creator",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content",
+              "displayName": "content",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content_snippet",
+              "displayName": "content_snippet",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "guid",
+              "displayName": "guid",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "categories",
+              "displayName": "categories",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "array",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "iso_date",
+              "displayName": "iso_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "31acf345-83e3-4c5a-9b23-8a8fe785b368",
+      "name": "Postgres4",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        640,
+        1060
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "HepPXfnw8NWZYpxQ",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "arstechnica",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "creator": "={{ $json.creator }}",
+            "title": "={{ $json.title }}",
+            "link": "={{ $json.link }}",
+            "pub_date": "={{ $json.pubDate }}",
+            "content_encoded": "={{ $json['content:encoded'] }}",
+            "content_encoded_snippet": "={{ $json['content:encodedSnippet'] }}",
+            "dc_creator": "={{ $json['dc:creator'] }}",
+            "content": "={{ $json.content }}",
+            "content_snippet": "={{ $json.contentSnippet }}",
+            "guid": "={{ $json.guid }}",
+            "categories": "={{ $json.categories }}",
+            "iso_date": "={{ $json.isoDate }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "creator",
+              "displayName": "creator",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "link",
+              "displayName": "link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "pub_date",
+              "displayName": "pub_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content_encoded",
+              "displayName": "content_encoded",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content_encoded_snippet",
+              "displayName": "content_encoded_snippet",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "dc_creator",
+              "displayName": "dc_creator",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content",
+              "displayName": "content",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content_snippet",
+              "displayName": "content_snippet",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "guid",
+              "displayName": "guid",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "categories",
+              "displayName": "categories",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "array",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "iso_date",
+              "displayName": "iso_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "eca0c03a-d241-436a-bb7b-7048e318eb64",
+      "name": "Postgres5",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        1060,
+        380
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "HepPXfnw8NWZYpxQ",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "feedUrl": "http://feeds.arstechnica.com/arstechnica/index"
+      },
+      "id": "bdf59dbf-ecbc-4f0c-b928-58fb93daad28",
+      "name": "rss_arstechnica",
+      "type": "n8n-nodes-base.rssFeedReadTrigger",
+      "typeVersion": 1,
+      "position": [
+        840,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "feedUrl": "http://rss.slashdot.org/Slashdot/slashdotMain"
+      },
+      "id": "72df0365-af2d-4f18-9d55-aaed9fb2e2c9",
+      "name": "rss_slashdot",
+      "type": "n8n-nodes-base.rssFeedReadTrigger",
+      "typeVersion": 1,
+      "position": [
+        840,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "slashdot",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "creator": "={{ $json.creator }}",
+            "title": "={{ $json.title }}",
+            "link": "={{ $json.link }}",
+            "dc_creator": "={{ $json['dc:creator'] }}",
+            "dc_date": "={{ $json['dc:date'] }}",
+            "content": "={{ $json.content }}",
+            "content_snippet": "={{ $json.contentSnippet }}",
+            "rdf_about": "={{ $json['rdf:about'] }}",
+            "iso_date": "={{ $json.isoDate }}",
+            "id": 0
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "creator",
+              "displayName": "creator",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "link",
+              "displayName": "link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "pub_date",
+              "displayName": "pub_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "dc_creator",
+              "displayName": "dc_creator",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "dc_date",
+              "displayName": "dc_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content",
+              "displayName": "content",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content_snippet",
+              "displayName": "content_snippet",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "rdf_about",
+              "displayName": "rdf_about",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "iso_date",
+              "displayName": "iso_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "0dfb7335-ec7f-448a-b56d-d29fc93bf623",
+      "name": "Postgres6",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        1060,
+        560
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "HepPXfnw8NWZYpxQ",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "feedUrl": "https://www.technologyreview.com/feed/"
+      },
+      "id": "a4f238b7-5a61-4600-91dc-ed7ee7d60a68",
+      "name": "rss_technologyreview",
+      "type": "n8n-nodes-base.rssFeedReadTrigger",
+      "typeVersion": 1,
+      "position": [
+        840,
+        720
+      ]
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "techreview",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "creator": "={{ $json.creator }}",
+            "title": "={{ $json.title }}",
+            "content_encoded": "={{ $json['content:encoded'] }}",
+            "content_encoded_snippet": "={{ $json['content:encodedSnippet'] }}",
+            "content": "={{ $json.content }}",
+            "content_snippet": "={{ $json.contentSnippet }}",
+            "guid": "={{ $json.guid }}",
+            "categories": "={{ $json.categories }}",
+            "iso_date": "={{ $json.isoDate }}",
+            "link": "={{ $json.link }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "creator",
+              "displayName": "creator",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "link",
+              "displayName": "link",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "pub_date",
+              "displayName": "pub_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content_encoded",
+              "displayName": "content_encoded",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content_encoded_snippet",
+              "displayName": "content_encoded_snippet",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content",
+              "displayName": "content",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content_snippet",
+              "displayName": "content_snippet",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "guid",
+              "displayName": "guid",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "categories",
+              "displayName": "categories",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "array",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "iso_date",
+              "displayName": "iso_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "eddfbedb-dc58-41f8-b1b3-6540a38b1d7f",
+      "name": "Postgres7",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        1060,
+        720
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "HepPXfnw8NWZYpxQ",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "feedUrl": "https://thenextweb.com/feed"
+      },
+      "id": "d2b131c4-d133-4b0d-a9d7-bb8988b9484b",
+      "name": "rss_thenextweb",
+      "type": "n8n-nodes-base.rssFeedReadTrigger",
+      "typeVersion": 1,
+      "position": [
+        840,
+        900
+      ]
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "thenextweb",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "creator": "={{ $json.creator }}",
+            "title": "={{ $json.title }}",
+            "link": "={{ $json.link }}",
+            "enclosure_url": "={{ $json.enclosure.url }}",
+            "enclosure_type": "={{ $json.enclosure.type }}",
+            "enclosure_length": "={{ $json.enclosure.length }}",
+            "dc_creator": "={{ $json['dc:creator'] }}",
+            "content": "={{ $json.content }}",
+            "contentsnippet": "={{ $json.contentSnippet }}",
+            "categories": "={{ $json.categories }}",
+            "isodate": "={{ $json.isoDate }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "creator",
+              "displayName": "creator",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "link",
+              "displayName": "link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "pubdate",
+              "displayName": "pubdate",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "enclosure_url",
+              "displayName": "enclosure_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "enclosure_type",
+              "displayName": "enclosure_type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "enclosure_length",
+              "displayName": "enclosure_length",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "dc_creator",
+              "displayName": "dc_creator",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "content",
+              "displayName": "content",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "contentsnippet",
+              "displayName": "contentsnippet",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "guid",
+              "displayName": "guid",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "categories",
+              "displayName": "categories",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "array",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "isodate",
+              "displayName": "isodate",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "91e40659-8164-405b-a7e6-62120b0e61c1",
+      "name": "Postgres8",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        1060,
+        900
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "HepPXfnw8NWZYpxQ",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "mashable",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "title": "={{ $json.title }}",
+            "link": "={{ $json.link }}",
+            "content_encoded": "={{ $json['content:encoded'] }}",
+            "content_encodedsnippet": "={{ $json['content:encodedSnippet'] }}",
+            "content": "={{ $json.content }}",
+            "contentsnippet": "={{ $json.contentSnippet }}",
+            "guid": "={{ $json.guid }}",
+            "isodate": "={{ $json.isoDate }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "link",
+              "displayName": "link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "pubdate",
+              "displayName": "pubdate",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content_encoded",
+              "displayName": "content_encoded",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content_encodedsnippet",
+              "displayName": "content_encodedsnippet",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content",
+              "displayName": "content",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "contentsnippet",
+              "displayName": "contentsnippet",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "guid",
+              "displayName": "guid",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "isodate",
+              "displayName": "isodate",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e5af241b-ca8f-4c29-a46e-228c14a2132b",
+      "name": "Postgres9",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        1060,
+        1060
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "HepPXfnw8NWZYpxQ",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "feedUrl": "https://mashable.com/feeds/rss/all"
+      },
+      "id": "18d70464-89c7-4752-8d2f-7be596a85f8b",
+      "name": "rss_mashable",
+      "type": "n8n-nodes-base.rssFeedReadTrigger",
+      "typeVersion": 1,
+      "position": [
+        840,
+        1060
+      ]
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "gizmodo",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "creator": "={{ $json.creator }}",
+            "title": "={{ $json.title }}",
+            "link": "={{ $json.link }}",
+            "content_encoded": "={{ $json['content:encoded'] }}",
+            "content_encodedsnippet": "={{ $json['content:encodedSnippet'] }}",
+            "dc_creator": "={{ $json['dc:creator'] }}",
+            "comments": "={{ $json.comments }}",
+            "content": "={{ $json.content }}",
+            "contentsnippet": "={{ $json.contentSnippet }}",
+            "guid": "={{ $json.guid }}",
+            "categories": "={{ $json.categories }}",
+            "isodate": "={{ $json.isoDate }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "creator",
+              "displayName": "creator",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "link",
+              "displayName": "link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "pubdate",
+              "displayName": "pubdate",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content_encoded",
+              "displayName": "content_encoded",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content_encodedsnippet",
+              "displayName": "content_encodedsnippet",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "dc_creator",
+              "displayName": "dc_creator",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "comments",
+              "displayName": "comments",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content",
+              "displayName": "content",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "contentsnippet",
+              "displayName": "contentsnippet",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "guid",
+              "displayName": "guid",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "categories",
+              "displayName": "categories",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "array",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "isodate",
+              "displayName": "isodate",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e9360dc0-196f-4442-9008-ade58249825d",
+      "name": "Postgres10",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        1500,
+        380
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "HepPXfnw8NWZYpxQ",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "feedUrl": "http://gizmodo.com/rss"
+      },
+      "id": "9f889e1f-4847-46f8-a8cc-a54968a5ff81",
+      "name": "rss_gizmodo",
+      "type": "n8n-nodes-base.rssFeedReadTrigger",
+      "typeVersion": 1,
+      "position": [
+        1280,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "cnet",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "creator": "={{ $json.creator }}",
+            "title": "={{ $json.title }}",
+            "link": "={{ $json.link }}",
+            "pubdate": "={{ $json.pubDate }}",
+            "dc_creator": "={{ $json['dc:creator'] }}",
+            "content": "={{ $json.content }}",
+            "contentsnippet": "={{ $json.contentSnippet }}",
+            "guid": "={{ $json.guid }}",
+            "isodate": "={{ $json.isoDate }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "creator",
+              "displayName": "creator",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "link",
+              "displayName": "link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "pubdate",
+              "displayName": "pubdate",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "dc_creator",
+              "displayName": "dc_creator",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content",
+              "displayName": "content",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "contentsnippet",
+              "displayName": "contentsnippet",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "guid",
+              "displayName": "guid",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "isodate",
+              "displayName": "isodate",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "0c55bb4b-0946-48b9-9b9b-e6b1bc42dcf5",
+      "name": "Postgres11",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        1500,
+        560
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "HepPXfnw8NWZYpxQ",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "feedUrl": "https://www.cnet.com/rss/news/"
+      },
+      "id": "80e2da4f-aeff-4528-9eaa-692f926b8e42",
+      "name": "rss_cnet",
+      "type": "n8n-nodes-base.rssFeedReadTrigger",
+      "typeVersion": 1,
+      "position": [
+        1280,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "feedUrl": "https://feeds.feedburner.com/venturebeat/SZYF"
+      },
+      "id": "35251a3c-dc81-4fe7-b458-d2949197842e",
+      "name": "rss_venturebeat",
+      "type": "n8n-nodes-base.rssFeedReadTrigger",
+      "typeVersion": 1,
+      "position": [
+        1280,
+        720
+      ]
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "venturebeat",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "creator": "={{ $json.creator }}",
+            "title": "={{ $json.title }}",
+            "link": "={{ $json.link }}",
+            "pubdate": "={{ $json.pubDate }}",
+            "content_encoded": "={{ $json['content:encoded'] }}",
+            "content_encodedsnippet": "={{ $json['content:encodedSnippet'] }}",
+            "dc_creator": "={{ $json['dc:creator'] }}",
+            "content": "={{ $json.content }}",
+            "contentsnippet": "={{ $json.contentSnippet }}",
+            "guid": "={{ $json.guid }}",
+            "categories": "={{ $json.categories }}",
+            "isodate": "={{ $json.isoDate }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "creator",
+              "displayName": "creator",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "link",
+              "displayName": "link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "pubdate",
+              "displayName": "pubdate",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content_encoded",
+              "displayName": "content_encoded",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content_encodedsnippet",
+              "displayName": "content_encodedsnippet",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "dc_creator",
+              "displayName": "dc_creator",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content",
+              "displayName": "content",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "contentsnippet",
+              "displayName": "contentsnippet",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "guid",
+              "displayName": "guid",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "categories",
+              "displayName": "categories",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "array",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "isodate",
+              "displayName": "isodate",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3d3c0357-8132-42cb-b55f-90c0e8bf87b7",
+      "name": "Postgres12",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        1500,
+        720
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "HepPXfnw8NWZYpxQ",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "feedUrl": "https://technosdata.com/feed/"
+      },
+      "id": "f257e3d9-1523-46e5-bd5b-743342024746",
+      "name": "rss_technosdata",
+      "type": "n8n-nodes-base.rssFeedReadTrigger",
+      "typeVersion": 1,
+      "position": [
+        1280,
+        900
+      ]
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "technosdata",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "creator": "={{ $json.creator }}",
+            "title": "={{ $json.title }}",
+            "link": "={{ $json.link }}",
+            "pubdate": "={{ $json.pubDate }}",
+            "content_encoded": "={{ $json['content:encoded'] }}",
+            "content_encodedsnippet": "={{ $json['content:encodedSnippet'] }}",
+            "dc_creator": "={{ $json['dc:creator'] }}",
+            "content": "={{ $json.content }}",
+            "comments": "={{ $json.comments }}",
+            "contentsnippet": "={{ $json.contentSnippet }}",
+            "guid": "={{ $json.guid }}",
+            "categories": "={{ $json.categories }}",
+            "isodate": "={{ $json.isoDate }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "creator",
+              "displayName": "creator",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "link",
+              "displayName": "link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "pubdate",
+              "displayName": "pubdate",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content_encoded",
+              "displayName": "content_encoded",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content_encodedsnippet",
+              "displayName": "content_encodedsnippet",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "dc_creator",
+              "displayName": "dc_creator",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "comments",
+              "displayName": "comments",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content",
+              "displayName": "content",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "contentsnippet",
+              "displayName": "contentsnippet",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "guid",
+              "displayName": "guid",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "categories",
+              "displayName": "categories",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "array",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "isodate",
+              "displayName": "isodate",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ae2d1f0c-b908-4129-9eb8-ac33568a08db",
+      "name": "Postgres13",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        1500,
+        900
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "HepPXfnw8NWZYpxQ",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tecuy",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "creator": "={{ $json.creator }}",
+            "title": "={{ $json.title }}",
+            "pubdate": "={{ $json.pubDate }}",
+            "link": "={{ $json.link }}",
+            "content_encoded": "={{ $json['content:encoded'] }}",
+            "content_encodedsnippet": "={{ $json['content:encodedSnippet'] }}",
+            "content": "={{ $json.content }}",
+            "dc_creator": "={{ $json['dc:creator'] }}",
+            "comments": "={{ $json.comments }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "creator",
+              "displayName": "creator",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "link",
+              "displayName": "link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "pubdate",
+              "displayName": "pubdate",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content",
+              "displayName": "content",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content_encoded",
+              "displayName": "content_encoded",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content_encodedsnippet",
+              "displayName": "content_encodedsnippet",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "dc_creator",
+              "displayName": "dc_creator",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "comments",
+              "displayName": "comments",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "4c02d107-3e93-49dd-bb2e-a4f69ab2bcf5",
+      "name": "Postgres14",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        1500,
+        1080
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "HepPXfnw8NWZYpxQ",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "feedUrl": "https://tecuy.com/feed/"
+      },
+      "id": "e8cfd055-4a51-4d94-9d12-31e4944a76a3",
+      "name": "rss_tecuy",
+      "type": "n8n-nodes-base.rssFeedReadTrigger",
+      "typeVersion": 1,
+      "position": [
+        1280,
+        1080
+      ]
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "feedUrl": " http://korben.info/feed"
+      },
+      "id": "32e39633-5422-4f95-84c0-8b5f3fde446a",
+      "name": "rss_korben",
+      "type": "n8n-nodes-base.rssFeedReadTrigger",
+      "typeVersion": 1,
+      "position": [
+        1700,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "korben",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "title": "={{ $json.title }}",
+            "link": "={{ $json.link }}",
+            "pubdate": "={{ $json.pubDate }}",
+            "content": "={{ $json.content }}",
+            "contentsnippet": "={{ $json.contentSnippet }}",
+            "guid": "={{ $json.guid }}",
+            "isodate": "={{ $json.isoDate }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "link",
+              "displayName": "link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "pubdate",
+              "displayName": "pubdate",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "content",
+              "displayName": "content",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "contentsnippet",
+              "displayName": "contentsnippet",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "guid",
+              "displayName": "guid",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "isodate",
+              "displayName": "isodate",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d2a693b5-a582-4f22-82fb-907b2808c1eb",
+      "name": "Postgres15",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        1920,
+        380
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "HepPXfnw8NWZYpxQ",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "feedUrl": "https://www.journaldugeek.com/feed"
+      },
+      "id": "29ef0690-168b-4249-adc9-4d4a6086168a",
+      "name": "rss_journaldugeek",
+      "type": "n8n-nodes-base.rssFeedReadTrigger",
+      "typeVersion": 1,
+      "position": [
+        1700,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "journaldugeek",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "creator": "={{ $json.creator }}",
+            "title": "={{ $json.title }}",
+            "link": "={{ $json.link }}",
+            "pubdate": "={{ $json.pubDate }}",
+            "dc_creator": "={{ $json['dc:creator'] }}",
+            "comments": "={{ $json.comments }}",
+            "content": "={{ $json.content }}",
+            "contentsnippet": "={{ $json.contentSnippet }}",
+            "guid": "={{ $json.guid }}",
+            "categories": "={{ $json.categories }}",
+            "isodate": "={{ $json.isoDate }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "creator",
+              "displayName": "creator",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "link",
+              "displayName": "link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "pubdate",
+              "displayName": "pubdate",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "dc_creator",
+              "displayName": "dc_creator",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "comments",
+              "displayName": "comments",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "content",
+              "displayName": "content",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "contentsnippet",
+              "displayName": "contentsnippet",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "guid",
+              "displayName": "guid",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "categories",
+              "displayName": "categories",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "isodate",
+              "displayName": "isodate",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c5c57710-4b80-480a-81a8-b41fd79b62f3",
+      "name": "Postgres16",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        1920,
+        540
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "HepPXfnw8NWZYpxQ",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "feedUrl": "https://www.phonandroid.com/feed"
+      },
+      "id": "c22a781e-a92c-47e4-b91f-2d0991d887a5",
+      "name": "rss_phonandroid",
+      "type": "n8n-nodes-base.rssFeedReadTrigger",
+      "typeVersion": 1,
+      "position": [
+        1700,
+        720
+      ]
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "phonandroid",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "creator": "={{ $json.creator }}",
+            "title": "={{ $json.title }}",
+            "link": "={{ $json.link }}",
+            "pubdate": "={{ $json.pubDate }}",
+            "dc_creator": "={{ $json['dc:creator'] }}",
+            "comments": "={{ $json.comments }}",
+            "content": "={{ $json.content }}",
+            "contentsnippet": "={{ $json.contentSnippet }}",
+            "guid": "={{ $json.guid }}",
+            "categories": "={{ $json.categories }}",
+            "isodate": "={{ $json.isoDate }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "creator",
+              "displayName": "creator",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "link",
+              "displayName": "link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "pubdate",
+              "displayName": "pubdate",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "dc_creator",
+              "displayName": "dc_creator",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "comments",
+              "displayName": "comments",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content",
+              "displayName": "content",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "contentsnippet",
+              "displayName": "contentsnippet",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "guid",
+              "displayName": "guid",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "categories",
+              "displayName": "categories",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "isodate",
+              "displayName": "isodate",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "2a3fa16d-cb80-4f7b-8898-286e4d80c7cb",
+      "name": "Postgres17",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        1920,
+        720
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "HepPXfnw8NWZYpxQ",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "feedUrl": "https://www.gruenderszene.de/rss"
+      },
+      "id": "165873a2-d782-4b8a-a6eb-a4d62c6acf3a",
+      "name": "rss_gruenderszene",
+      "type": "n8n-nodes-base.rssFeedReadTrigger",
+      "typeVersion": 1,
+      "position": [
+        1700,
+        880
+      ]
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "gruenderszene",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "creator": "={{ $json.creator }}",
+            "title": "={{ $json.title }}",
+            "link": "={{ $json.link }}",
+            "pubdate": "={{ $json.pubDate }}",
+            "enclosure_url": "={{ $json.enclosure.url }}",
+            "enclosure_type": "={{ $json.enclosure.type }}",
+            "dc_creator": "={{ $json['dc:creator'] }}",
+            "content": "={{ $json.content }}",
+            "contentsnippet": "={{ $json.contentSnippet }}",
+            "guid": "={{ $json.guid }}",
+            "categories": "={{ $json.categories }}",
+            "isodate": "={{ $json.isoDate }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "creator",
+              "displayName": "creator",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "link",
+              "displayName": "link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "pubdate",
+              "displayName": "pubdate",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "enclosure_url",
+              "displayName": "enclosure_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "enclosure_type",
+              "displayName": "enclosure_type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "dc_creator",
+              "displayName": "dc_creator",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content",
+              "displayName": "content",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "contentsnippet",
+              "displayName": "contentsnippet",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "guid",
+              "displayName": "guid",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "categories",
+              "displayName": "categories",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "isodate",
+              "displayName": "isodate",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3855934e-6643-4981-b0fc-cfcaa50a2ed4",
+      "name": "Postgres18",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        1920,
+        880
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "HepPXfnw8NWZYpxQ",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "feedUrl": "https://ascii.jp/rss.xml"
+      },
+      "id": "cba7c4ec-bf2f-4b1a-b7b8-711acc94754c",
+      "name": "rss_ascii",
+      "type": "n8n-nodes-base.rssFeedReadTrigger",
+      "typeVersion": 1,
+      "position": [
+        1700,
+        1080
+      ]
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "ascii",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "title": "={{ $json.title }}",
+            "link": "={{ $json.link }}",
+            "pubdate": "={{ $json.pubDate }}",
+            "enclosure_url": "={{ $json.enclosure.url }}",
+            "enclosure_width": "={{ $json.enclosure.width }}",
+            "enclosure_height": "={{ $json.enclosure.height }}",
+            "content": "={{ $json.content }}",
+            "contentsnippet": "={{ $json.contentSnippet }}",
+            "guid": "={{ $json.guid }}",
+            "categories": "={{ $json.categories }}",
+            "isodate": "={{ $json.isoDate }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "link",
+              "displayName": "link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "pubdate",
+              "displayName": "pubdate",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "enclosure_url",
+              "displayName": "enclosure_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "enclosure_width",
+              "displayName": "enclosure_width",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "enclosure_height",
+              "displayName": "enclosure_height",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content",
+              "displayName": "content",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "contentsnippet",
+              "displayName": "contentsnippet",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "guid",
+              "displayName": "guid",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "categories",
+              "displayName": "categories",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "isodate",
+              "displayName": "isodate",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "fce3cfff-e495-4c1d-a394-2624274a4c92",
+      "name": "Postgres19",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        1920,
+        1080
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "HepPXfnw8NWZYpxQ",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "feedUrl": "https://technode.com/feed/"
+      },
+      "id": "132857c5-aecb-4b65-8767-e815c7d7e326",
+      "name": "rss_technode",
+      "type": "n8n-nodes-base.rssFeedReadTrigger",
+      "typeVersion": 1,
+      "position": [
+        2120,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "technode",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "creator": "={{ $json.creator }}",
+            "title": "={{ $json.title }}",
+            "link": "={{ $json.link }}",
+            "pubdate": "={{ $json.pubDate }}",
+            "content_encoded": "={{ $json['content:encoded'] }}",
+            "content_encodedsnippet": "={{ $json['content:encodedSnippet'] }}",
+            "dc_creator": "={{ $json['dc:creator'] }}",
+            "content": "={{ $json.content }}",
+            "contentsnippet": "={{ $json.contentSnippet }}",
+            "guid": "={{ $json.guid }}",
+            "categories": "={{ $json.categories }}",
+            "isodate": "={{ $json.isoDate }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "creator",
+              "displayName": "creator",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "link",
+              "displayName": "link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "pubdate",
+              "displayName": "pubdate",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content_encoded",
+              "displayName": "content_encoded",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content_encodedsnippet",
+              "displayName": "content_encodedsnippet",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "dc_creator",
+              "displayName": "dc_creator",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content",
+              "displayName": "content",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "contentsnippet",
+              "displayName": "contentsnippet",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "guid",
+              "displayName": "guid",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "categories",
+              "displayName": "categories",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "isodate",
+              "displayName": "isodate",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e272ee45-76c4-477d-b413-bffe6f6df650",
+      "name": "Postgres20",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        2340,
+        380
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "HepPXfnw8NWZYpxQ",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "feedUrl": "https://www.techinasia.com/tag/china/feed"
+      },
+      "id": "5af63783-a9ad-44d6-a241-a2178fd10597",
+      "name": "rss_techinasia",
+      "type": "n8n-nodes-base.rssFeedReadTrigger",
+      "typeVersion": 1,
+      "position": [
+        2120,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "techinasia",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "creator": "={{ $json.creator }}",
+            "title": "={{ $json.title }}",
+            "link": "={{ $json.link }}",
+            "pubdate": "={{ $json.pubDate }}",
+            "enclosure_url": "={{ $json.enclosure.url }}",
+            "enclosure_length": "={{ $json.enclosure.length }}",
+            "enclosure_type": "={{ $json.enclosure.type }}",
+            "dc_creator": "={{ $json['dc:creator'] }}",
+            "content": "={{ $json.content }}",
+            "contentsnippet": "={{ $json.contentSnippet }}",
+            "guid": "={{ $json.guid }}",
+            "categories": "={{ $json.categories }}",
+            "isodate": "={{ $json.isoDate }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "creator",
+              "displayName": "creator",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "link",
+              "displayName": "link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "pubdate",
+              "displayName": "pubdate",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "enclosure_url",
+              "displayName": "enclosure_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "enclosure_length",
+              "displayName": "enclosure_length",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "enclosure_type",
+              "displayName": "enclosure_type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "dc_creator",
+              "displayName": "dc_creator",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content",
+              "displayName": "content",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "contentsnippet",
+              "displayName": "contentsnippet",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "guid",
+              "displayName": "guid",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "categories",
+              "displayName": "categories",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "isodate",
+              "displayName": "isodate",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "58679ee7-cd32-41ae-9007-21394d111b00",
+      "name": "Postgres21",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        2340,
+        540
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "HepPXfnw8NWZYpxQ",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "chinatechnews",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "creator": "={{ $json.creator }}",
+            "title": "={{ $json.title }}",
+            "link": "={{ $json.link }}",
+            "pubdate": "={{ $json.pubDate }}",
+            "dc_creator": "={{ $json['dc:creator'] }}",
+            "content": "={{ $json.content }}",
+            "contentsnippet": "={{ $json.contentSnippet }}",
+            "guid": "={{ $json.guid }}",
+            "categories": "={{ $json.categories }}",
+            "isodate": "={{ $json.isoDate }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "creator",
+              "displayName": "creator",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "link",
+              "displayName": "link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "pubdate",
+              "displayName": "pubdate",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "dc_creator",
+              "displayName": "dc_creator",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content",
+              "displayName": "content",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "contentsnippet",
+              "displayName": "contentsnippet",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "guid",
+              "displayName": "guid",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "categories",
+              "displayName": "categories",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "isodate",
+              "displayName": "isodate",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3b02c58f-8af8-4903-ae51-f72253e41c35",
+      "name": "Postgres22",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        2340,
+        720
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "HepPXfnw8NWZYpxQ",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "feedUrl": "https://www.techradar.com/rss"
+      },
+      "id": "4ccf0e68-31e6-4756-ac1d-193b04e53219",
+      "name": "rss_techradar",
+      "type": "n8n-nodes-base.rssFeedReadTrigger",
+      "typeVersion": 1,
+      "position": [
+        2120,
+        880
+      ]
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "feedUrl": "https://www.chinatechnews.com/feed"
+      },
+      "id": "75c54dc7-504e-4df4-a0a2-136e6a88ce91",
+      "name": "rss_chinatechnews",
+      "type": "n8n-nodes-base.rssFeedReadTrigger",
+      "typeVersion": 1,
+      "position": [
+        2120,
+        720
+      ]
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "techradar",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "creator": "={{ $json.creator }}",
+            "title": "={{ $json.title }}",
+            "link": "={{ $json.link }}",
+            "pubdate": "={{ $json.pubDate }}",
+            "author": "={{ $json.author }}",
+            "content_encoded": "={{ $json['content:encoded'] }}",
+            "content_encodedsnippet": "={{ $json['content:encodedSnippet'] }}",
+            "enclosure": "={{ $json.enclosure }}",
+            "content": "={{ $json.content }}",
+            "contentsnippet": "={{ $json.contentSnippet }}",
+            "guid": "={{ $json.guid }}",
+            "categories": "={{ $json.categories }}",
+            "isodate": "={{ $json.isoDate }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "creator",
+              "displayName": "creator",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "link",
+              "displayName": "link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "pubdate",
+              "displayName": "pubdate",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "author",
+              "displayName": "author",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content_encoded",
+              "displayName": "content_encoded",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content_encodedsnippet",
+              "displayName": "content_encodedsnippet",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "enclosure",
+              "displayName": "enclosure",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content",
+              "displayName": "content",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "contentsnippet",
+              "displayName": "contentsnippet",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "guid",
+              "displayName": "guid",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "categories",
+              "displayName": "categories",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "array",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "isodate",
+              "displayName": "isodate",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "28fd9934-c257-4200-8cc6-0ed507c58aba",
+      "name": "Postgres23",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        2340,
+        880
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "HepPXfnw8NWZYpxQ",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "feedUrl": "https://tech.eu/feed/"
+      },
+      "id": "cae98ef9-17fc-43f7-9d06-f4fc14ccee91",
+      "name": "rss_techeu",
+      "type": "n8n-nodes-base.rssFeedReadTrigger",
+      "typeVersion": 1,
+      "position": [
+        2120,
+        1080
+      ]
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "techeu",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "creator": "={{ $json.creator }}",
+            "title": "={{ $json.title }}",
+            "link": "={{ $json.link }}",
+            "pubdate": "={{ $json.pubDate }}",
+            "content_encoded": "={{ $json['content:encoded'] }}",
+            "content_encodedsnippet": "={{ $json['content:encodedSnippet'] }}",
+            "dc_creator": "={{ $json['dc:creator'] }}",
+            "comments": "={{ $json.comments }}",
+            "content": "={{ $json.content }}",
+            "contentsnippet": "={{ $json.contentSnippet }}",
+            "guid": "={{ $json.guid }}",
+            "categories": "={{ $json.categories }}",
+            "isodate": "={{ $json.isoDate }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "creator",
+              "displayName": "creator",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "link",
+              "displayName": "link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "pubdate",
+              "displayName": "pubdate",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content_encoded",
+              "displayName": "content_encoded",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content_encodedsnippet",
+              "displayName": "content_encodedsnippet",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "dc_creator",
+              "displayName": "dc_creator",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "comments",
+              "displayName": "comments",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content",
+              "displayName": "content",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "contentsnippet",
+              "displayName": "contentsnippet",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "guid",
+              "displayName": "guid",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "categories",
+              "displayName": "categories",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "array",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "isodate",
+              "displayName": "isodate",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "2c370aea-5274-4b76-b3d3-366190227662",
+      "name": "Postgres24",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        2340,
+        1080
       ],
       "credentials": {
         "postgres": {
@@ -562,13 +4472,255 @@
           }
         ]
       ]
+    },
+    "rss_wired": {
+      "main": [
+        [
+          {
+            "node": "Postgres3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "rss_engadget": {
+      "main": [
+        [
+          {
+            "node": "Postgres4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "rss_arstechnica": {
+      "main": [
+        [
+          {
+            "node": "Postgres5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "rss_slashdot": {
+      "main": [
+        [
+          {
+            "node": "Postgres6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "rss_technologyreview": {
+      "main": [
+        [
+          {
+            "node": "Postgres7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "rss_thenextweb": {
+      "main": [
+        [
+          {
+            "node": "Postgres8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "rss_mashable": {
+      "main": [
+        [
+          {
+            "node": "Postgres9",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "rss_gizmodo": {
+      "main": [
+        [
+          {
+            "node": "Postgres10",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "rss_cnet": {
+      "main": [
+        [
+          {
+            "node": "Postgres11",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "rss_venturebeat": {
+      "main": [
+        [
+          {
+            "node": "Postgres12",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "rss_technosdata": {
+      "main": [
+        [
+          {
+            "node": "Postgres13",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "rss_tecuy": {
+      "main": [
+        [
+          {
+            "node": "Postgres14",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "rss_korben": {
+      "main": [
+        [
+          {
+            "node": "Postgres15",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "rss_journaldugeek": {
+      "main": [
+        [
+          {
+            "node": "Postgres16",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "rss_phonandroid": {
+      "main": [
+        [
+          {
+            "node": "Postgres17",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "rss_gruenderszene": {
+      "main": [
+        [
+          {
+            "node": "Postgres18",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "rss_ascii": {
+      "main": [
+        [
+          {
+            "node": "Postgres19",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "rss_technode": {
+      "main": [
+        [
+          {
+            "node": "Postgres20",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "rss_techinasia": {
+      "main": [
+        [
+          {
+            "node": "Postgres21",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "rss_techradar": {
+      "main": [
+        [
+          {
+            "node": "Postgres23",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "rss_chinatechnews": {
+      "main": [
+        [
+          {
+            "node": "Postgres22",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "rss_techeu": {
+      "main": [
+        [
+          {
+            "node": "Postgres24",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "active": true,
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "93e58514-1989-4bcb-b703-76df3849d506",
+  "versionId": "43443742-ac8c-49f0-859b-97d3c0e11f88",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "df8c1914d3f3cd00b5e241c18811e2507a43a7a61b135c735734e2fcf3453beb"
