@@ -1,0 +1,5 @@
+fastapi==0.95.2
+uvicorn==0.22.0
+pyppeteer==1.0.2
+newspaper3k==0.2.8
+lxml[html_clean]==4.9.2

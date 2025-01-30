@@ -1,0 +1,803 @@
+{
+  "name": "Extract Content - Podcast Tool",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        460,
+        460
+      ],
+      "id": "3e686c73-1911-4853-9263-c90611211bf8",
+      "name": "Execute Workflow Trigger"
+    },
+    {
+      "parameters": {
+        "operation": "pdf",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        1340,
+        600
+      ],
+      "id": "560b57f2-21e4-4895-aad1-33c72b3fdec8",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "url": "=https://r.jina.ai/{{ $json.url }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1160,
+        840
+      ],
+      "id": "4c6152f9-432a-4e40-93c2-8ecabe0851ff",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.url }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1160,
+        600
+      ],
+      "id": "5c415587-069e-43c9-88d2-d9f10d94cc4e",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.url }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        260,
+        720
+      ],
+      "id": "5461a015-cc73-42a0-89ca-4e0b8157db6c",
+      "name": "HTTP Request2"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        220,
+        1120
+      ],
+      "id": "a2ef7798-f78e-4213-8beb-82a44ed9cebf",
+      "name": "OpenAI Chat Model"
+    },
+    {
+      "parameters": {
+        "text": "={{ $json.data }}",
+        "attributes": {
+          "attributes": [
+            {
+              "name": "class",
+              "description": "article, paper, other",
+              "required": true
+            },
+            {
+              "name": "url",
+              "description": "The research paper pdf download link"
+            }
+          ]
+        },
+        "options": {
+          "systemPromptTemplate": "You are an expert in HTML extraction.\n\nI want you to classify the content as one of the following:\n- article (blog post or article)\n- paper (research paper)\n- other (anything else)\n\nIf the class is of type 'paper', extract the pdf url as well"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.informationExtractor",
+      "typeVersion": 1,
+      "position": [
+        180,
+        960
+      ],
+      "id": "71188dca-52e7-4cfd-a483-aed96a166261",
+      "name": "Information Extractor",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a05b5f12-ecee-4144-96de-f6c9bd8789ca",
+              "name": "url",
+              "value": "={{ $json.output.url }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        680,
+        720
+      ],
+      "id": "eaaac642-4f5b-42e9-aec0-bf8dca2b868d",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.type }}",
+                    "rightValue": "document",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "4bb2e0da-30ac-4d90-a294-42e2bec5c5cc",
+                    "leftValue": "={{ $json.type }}",
+                    "rightValue": "article",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "2a630517-5738-42aa-9df7-dc80bb0acafe",
+                    "leftValue": "={{ $json.type }}",
+                    "rightValue": "link",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        660,
+        460
+      ],
+      "id": "7ab6e31b-3435-4e18-b7ba-3f67fa45da04",
+      "name": "Switch Type"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.output.class }}",
+                    "rightValue": "paper",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "e14f2fa4-acd2-40c2-a657-ac2b30ce6e8c",
+                    "leftValue": "={{ $json.output.class }}",
+                    "rightValue": "article",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        480,
+        800
+      ],
+      "id": "274de102-743f-41b0-b075-a0cc498c2d6b",
+      "name": "Switch Link Type"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "aecb6aec-551a-4a0a-abcf-f385a553e95f",
+              "name": "url",
+              "value": "={{ $('Switch Type').item.json.url }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        680,
+        920
+      ],
+      "id": "ab4aa788-f366-4401-994a-e260753c85d2",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        980,
+        600
+      ],
+      "id": "a664755e-38dc-4df7-a4ad-e24b9046be92",
+      "name": "Merge1"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        980,
+        840
+      ],
+      "id": "23b5b766-2aca-4755-94bb-2242c2bbf5ce",
+      "name": "Merge2"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        1340,
+        840
+      ],
+      "id": "223db417-2f04-4465-a72c-a7ebae333a9e",
+      "name": "Merge3"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "359ed6e8-c97f-4996-a793-27607a9ed986",
+              "name": "data",
+              "value": "={{ $json.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1520,
+        600
+      ],
+      "id": "83815cc2-0a3a-4340-9046-bed0f28d66bd",
+      "name": "Edit Fields2"
+    },
+    {
+      "parameters": {
+        "text": "={{ $json.data }}",
+        "attributes": {
+          "attributes": [
+            {
+              "name": "title",
+              "description": "The title of this content"
+            },
+            {
+              "name": "language",
+              "description": "The content language"
+            },
+            {
+              "name": "author",
+              "description": "The author of the content"
+            },
+            {
+              "name": "dialogue_structure",
+              "description": "Based on the content type, give a comma separated list of the suggested sections for an award winning podcast discussing this content should be structured."
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.informationExtractor",
+      "typeVersion": 1,
+      "position": [
+        1280,
+        1080
+      ],
+      "id": "beb6ba0a-34a3-481b-8c0e-e61af6c4cf20",
+      "name": "Information Extractor1",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        1320,
+        1240
+      ],
+      "id": "e6ac0cd0-5ba3-4248-9150-377407fdc73f",
+      "name": "OpenAI Chat Model2"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        1600,
+        840
+      ],
+      "id": "0de82d03-6ea7-4ae0-8805-c3786b2c9250",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "8e821182-4bab-41af-9df1-f2e6f7257ff3",
+              "name": "title",
+              "value": "={{ $json.output.title }}",
+              "type": "string"
+            },
+            {
+              "id": "48bdd98b-9cf8-4b1d-aece-001f6fe1186e",
+              "name": "content",
+              "value": "={{ $json.data }}",
+              "type": "string"
+            },
+            {
+              "id": "121eac29-ae06-44b7-8231-7fcae22b6bc1",
+              "name": "author",
+              "value": "={{ $json.output.author }}",
+              "type": "string"
+            },
+            {
+              "id": "d101f112-4e0d-458e-acc4-d38266037da4",
+              "name": "language",
+              "value": "={{ $json.output.language }}",
+              "type": "string"
+            },
+            {
+              "id": "a3935909-ad5a-4205-a763-239b0852d547",
+              "name": "cover",
+              "value": "={{ $('Execute Workflow Trigger').item.json.cover }}",
+              "type": "string"
+            },
+            {
+              "id": "a29c8213-7bdd-4be9-b334-2a2a2e62d7be",
+              "name": "dialogue_structure",
+              "value": "={{ $json.output.dialogue_structure }}",
+              "type": "string"
+            },
+            {
+              "id": "21ef5bc8-2f41-4330-a2d6-145ebf79e588",
+              "name": "user_instruction",
+              "value": "={{ $('Execute Workflow Trigger').item.json.user_instruction }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1820,
+        840
+      ],
+      "id": "ea0c5f7b-b4d4-49e6-a0b8-3d00656aabd4",
+      "name": "Edit Fields3"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "ehop6D1IYbqTquPC",
+          "mode": "list",
+          "cachedResultName": "Podcastify"
+        },
+        "mode": "each",
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.1,
+      "position": [
+        2040,
+        840
+      ],
+      "id": "b813de5e-47ea-49cb-a5a8-20e7ad77211d",
+      "name": "Execute Workflow",
+      "retryOnFail": false,
+      "maxTries": 2,
+      "waitBetweenTries": 5000
+    }
+  ],
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "url": "https://arxiv.org/pdf/1701.01724",
+          "type": "document",
+          "cover": "",
+          "user_instruction": ""
+        }
+      },
+      {
+        "json": {
+          "url": "https://arxiv.org/abs/1701.01724",
+          "type": "link",
+          "cover": "https://media.springernature.com/lw685/springer-static/image/art%3A10.1038%2Fs41746-024-01356-6/MediaObjects/41746_2024_1356_Fig1_HTML.png",
+          "user_instruction": ""
+        }
+      },
+      {
+        "json": {
+          "url": "https://www.linkedin.com/blog/engineering/generative-ai/how-we-built-domain-adapted-foundation-genai-models-to-power-our-platform",
+          "type": "article",
+          "cover": "",
+          "user_instruction": ""
+        }
+      },
+      {
+        "json": {
+          "url": "https://simonwillison.net/2024/Dec/31/llms-in-2024/",
+          "type": "link",
+          "cover": "",
+          "user_instruction": ""
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Switch Type",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request2": {
+      "main": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Information Extractor": {
+      "main": [
+        [
+          {
+            "node": "Switch Link Type",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Switch Type": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch Link Type": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge2": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Merge3",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "Merge3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge3": {
+      "main": [
+        [
+          {
+            "node": "Information Extractor1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Information Extractor1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Information Extractor1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields3": {
+      "main": [
+        [
+          {
+            "node": "Execute Workflow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "a394364c-bd3b-4dd9-86c0-a24ab81b4647",
+  "meta": {
+    "instanceId": "3dd2b02bb2fe8db9b8721aa65f83b0102c1bec136e20d69dff543397dd30c659"
+  },
+  "id": "8hLzbpiTnlDH9ywr",
+  "tags": [
+    {
+      "name": "Backup",
+      "id": "uFK16yopqQuUjRH2",
+      "createdAt": "2025-01-25T23:27:55.677Z",
+      "updatedAt": "2025-01-25T23:27:55.677Z"
+    }
+  ]
+}
